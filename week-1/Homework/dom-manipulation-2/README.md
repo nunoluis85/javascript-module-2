@@ -32,7 +32,7 @@ Here's an example of how the website should look for the blue button:
 
 Just below the buttons, there's a form called **Register with us**.
 
-Continue working in `./js/main.js` to add the following functionality:
+Continue working in `./js/main.js` thank you for filling out the formto add the following functionality:
 
 When the submit button is pressed, it should check that all the form fields are valid:
 
@@ -42,7 +42,7 @@ When the submit button is pressed, it should check that all the form fields are 
 For all the fields that invalid, it should make their background color `red`.
 IF all the fields are valid, when you click **Submit** it should:
 
-- Display an alert to thank you for filling out the form
+- Display an alert to 
 - Blank out (make empty) all the text fields
 
 **Important hint:** In your function that handles clicks on the `Submit` button you will need to call `event.preventDefault()` to stop the browser from refreshing the page. To read more on how to do this: https://developer.mozilla.org/en/docs/Web/API/Event/preventDefault
