@@ -1,4 +1,31 @@
-function setAlarm() {}
+let timer;
+
+function setAlarm() {
+  let timerValue = document.querySelector("#alarmSet").value;
+  let timeRemain = document.querySelector("#timeRemaining");
+
+  timer = setInterval(function () {
+    let minutes = Math.floor((timerValue % (60 * 60)) / 60);
+    let seconds = Math.floor((timerValue % 60));
+
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    timeRemain.innerHTML = `Time remaining: ${minutes}:${seconds}`;
+
+    if(timerValue > 0) {
+      timerValue--;
+      document.getElementById("set").setAttribute("disabled", "");
+    }
+
+    if (timerValue === 0) {
+      playAlarm();
+      document.body.style.backgroundColor = "yellow";
+      document.querySelector("#alarmSet").removeAttribute("disabled");
+      document.getElementById("set").removeAttribute("disabled");
+      document.querySelector("#alarmSet").value = "";
+    }
+  }, 1000);
+}
 
 // DO NOT EDIT BELOW HERE
 
@@ -11,7 +38,17 @@ function setup() {
 
   document.getElementById("stop").addEventListener("click", () => {
     pauseAlarm();
+    clearInterval(timer);
+    document.querySelector("#alarmSet").removeAttribute("disabled");
+    document.getElementById("set").removeAttribute("disabled");
+    document.querySelector("#timeRemaining").innerHTML = 'Remaining time: 00:00';
+    document.querySelector("#alarmSet").value = "";
+    document.body.style.backgroundColor = "green";
   });
+
+  document.querySelector("#pause").addEventListener("click", () => {
+    clearInterval(timer);
+  })
 }
 
 function playAlarm() {

@@ -58,10 +58,47 @@ var movies = [
   },
 ];
 
-// create showMovies function
+var moviesMain = document.getElementById("all-movies"); 
+ var moviesContainer = document.createElement("div");
+ moviesMain.appendChild(moviesContainer)
 
+// TASK 1: Create showMovies function
+function showMovies() {
+  setTimeout(() => {  
+    moviesContainer.innerHTML = movies.map(movie => `<p>${movie.title} - ${movie.director}</p>`).join("");   
+    document.querySelector("#movies-number").innerText = movies.length;
+  }, 1000)
+}
+  
+// TASK 2: Create addMovies function
 
-// create a new movie object for your favorite movie
+function addMovies(movie) { 
+  setTimeout(() => {
+    movies.push(movie);
+    showMovies();
+  }, 1000)
+}
+ 
 
+document.querySelector("#submitMovie").addEventListener("click", () => {
 
-// create addMovies function
+  var titleProperty = document.querySelector("#movieTitle");
+  var directorProperty = document.querySelector("#movieDirector");
+  var typeProperty = document.querySelector("#movieType");
+  var watchProperty = document.querySelector("#movieWatched");
+
+  let favoriteMovie = {
+    title: titleProperty.value,
+    director: directorProperty.value,
+    type: titleProperty.value,
+    haveWatched: watchProperty.value,
+  }
+
+  addMovies(favoriteMovie);
+
+  titleProperty.value = '';
+  directorProperty.value = '';
+  typeProperty.value = "";
+  watchProperty.value = '';
+})
+
